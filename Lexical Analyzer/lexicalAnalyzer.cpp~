@@ -1,0 +1,48 @@
+#include<cstdio>
+#include<cstdlib>
+#include<iostream>
+
+#include "lex.h"
+
+FILE *fp, *out ;
+char l;
+int ind;
+
+void skip_blanks(){
+    while( (l = fgetc(fp)) != NULL ){
+        if( l == EOF )
+            return END;
+
+        if( l == ' ' || l == '\n' || l == '\t')
+            continue;
+        else{
+            fseek(fp, -1, SEEK_CUR);
+            return;
+        }
+    }
+}
+
+string Lex(){
+       if( skip_blanks() == END ){
+            fclose(fp);
+            fclose(out);
+            exit(0);
+        }
+
+        l = fgetc(fp);
+
+        if( (ind = isSpecialChar(l)) > 0){
+            fprintf(out, "%s ", sp_char[ind]);
+
+        }else if(is)                    //Left off here. Check for Number and then create lexeme.
+}
+
+
+int main( int argc, char** argv ){
+
+    *fp = fopen(argv[1], "r");
+    *out = fopen("lex.txt", "w+");
+
+
+
+}
